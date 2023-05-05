@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var value: UILabel!
     
     private var isFinishedTyping : Bool = true
@@ -21,7 +21,13 @@ class ViewController: UIViewController {
             return number
         }
         set {
-            value.text = String(newValue)
+            let isInteger = floor(newValue) == newValue
+            if isInteger {
+                value.text = String(Int(newValue))
+            } else {
+                
+                value.text = String(newValue)
+            }
         }
     }
     
@@ -32,8 +38,8 @@ class ViewController: UIViewController {
         value.text = "0"
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         
         guard  let title = sender.titleLabel?.text else {
@@ -46,13 +52,10 @@ class ViewController: UIViewController {
         } else {
             if title == "." {
                 if ((value.text?.contains(".")) == true){
-                    value.text = value.text!
-                } else {
-                    value.text = value.text! + title
+                    return
                 }
-            } else {
-                value.text = value.text! + title
             }
+            value.text = value.text! + title
         }
     }
     

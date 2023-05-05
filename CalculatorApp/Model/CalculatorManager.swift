@@ -11,6 +11,7 @@ struct CalculatorManager {
     
     var num : Double?
     var intermediateValues : (n1:Double,op:String)?
+    var sym : String?
     
     mutating func setNumber(num:Double){
         self.num = num
@@ -33,6 +34,16 @@ struct CalculatorManager {
             //print("inside = case")
             return performCalculation(n2:n)
         default:
+//            if intermediateValues == nil {
+//                intermediateValues = (n1:n,op:symbol)
+//            } else {
+//                self.sym = symbol
+//                if let res = performCalculation(n2:n) {
+//                    intermediateValues = (n1:res,op:sym!)
+//                    return res
+//                }
+//            }
+            
             intermediateValues = (n1:n,op:symbol)
         }
         
